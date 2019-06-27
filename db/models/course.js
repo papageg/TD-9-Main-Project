@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
       
     },
     userId: {
-        type: User.User.id
+        type: DataTypes.INTEGER
     },
     title: {
         type: Sequelize.STRING
@@ -29,45 +29,8 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   Course.associate = (models) => {
-    Course.belongsTo(models.Person, {  
-      as: 'director',
-      foreignKey: {
-        fieldName: 'directorPersonId', 
-        allowNull: false,
-      },
-    });
+    models.Course.belongsTo(models.User, { foreignKey: "userId" });
   };
 
   return Course;
 };
-
-// class Course extends Model {}
-// Course.init({
-//   // attributes
-//   id: {
-//     type: Sequelize.INTEGER,
-//   },
-//   CourseId: {
-//     type: Sequelize.STRING,
-//     allowNull: false
-//   },
-//   title: {
-//     type: Sequelize.STRING
-//     // allowNull defaults to true
-//   },
-//   description: {
-//     type: Sequelize.TEXT
-//   },
-//   estimatedTime: {
-//     type: Sequelize.STRING,
-//     allowNull: true
-//   },
-//   materialsNeeded: {
-//     type: Sequelize.STRING,
-//     allowNull: true
-//   }
-// }, {
-//   sequelize,
-//   modelName: 'Course'
-//   // options
-// });

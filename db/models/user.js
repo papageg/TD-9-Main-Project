@@ -22,42 +22,8 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   User.associate = (models) => {
-    // TODO Add associations.
-    User.belongsTo(models.Person, {  
-      as: 'director',
-      foreignKey: {
-        fieldName: 'directorPersonId', 
-        allowNull: false,
-      },
-    });
+    User.hasMany(models.Course);
   };
 
   return User;
 };
-
-
-// const Model = Sequelize.Model;
-// class User extends Model {}
-// User.init({
-//   // attributes
-//   id: {
-//     type: Sequelize.INTEGER,
-//   },
-//   firstName: {
-//     type: Sequelize.STRING
-//   },
-//   lastName: {
-//     type: Sequelize.STRING
-//     // allowNull defaults to true
-//   },
-//   emailAdress: {
-//     type: Sequelize.STRING
-//   },
-//   password: {
-//     type: Sequelize.STRING
-//   }
-// }, {
-//   sequelize,
-//   modelName: 'user'
-//   // options
-// });
