@@ -25,62 +25,9 @@ sequelize
     console.error('Unable to connect to the database:', err);
   });
 
-  const Model = Sequelize.Model;
-  class User extends Model {}
-  User.init({
-    // attributes
-    id: {
-      type: Sequelize.INTEGER,
-    },
-    firstName: {
-      type: Sequelize.STRING
-    },
-    lastName: {
-      type: Sequelize.STRING
-      // allowNull defaults to true
-    },
-    emailAdress: {
-      type: Sequelize.STRING
-    },
-    password: {
-      type: Sequelize.STRING
-    }
-  }, {
-    sequelize,
-    modelName: 'user'
-    // options
-  });
+ 
 
-  class Course extends Model {}
-  Course.init({
-    // attributes
-    id: {
-      type: Sequelize.INTEGER,
-    },
-    userId: {
-      type: Sequelize.STRING,
-      allowNull: false
-    },
-    title: {
-      type: Sequelize.STRING
-      // allowNull defaults to true
-    },
-    description: {
-      type: Sequelize.TEXT
-    },
-    estimatedTime: {
-      type: Sequelize.STRING,
-      allowNull: true
-    },
-    materialsNeeded: {
-      type: Sequelize.STRING,
-      allowNull: true
-    }
-  }, {
-    sequelize,
-    modelName: 'user'
-    // options
-  });
+ 
 
 // setup morgan which gives us http request logging
 app.use(morgan('dev'));
