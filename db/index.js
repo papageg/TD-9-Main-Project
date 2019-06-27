@@ -8,7 +8,7 @@ console.info('Instantiating and configuring the Sequelize object instance...');
 
 const options = {
   dialect: 'sqlite',
-  storage: 'movies.db',
+  storage: 'fsjstd-restapi.db',
   // This disables the use of string based operators
   // in order to improve the security of our code.
   operatorsAliases: false,
