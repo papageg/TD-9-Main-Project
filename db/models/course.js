@@ -3,11 +3,13 @@
 module.exports = (sequelize, DataTypes) => {
   const Course = sequelize.define('Course', {
     id: {
-      type: DataTypes.INTEGER
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
+      
     },
-    CourseId: {
-        type: Sequelize.STRING,
-        allowNull: false
+    userId: {
+        type: User.User.id
     },
     title: {
         type: Sequelize.STRING
