@@ -26,7 +26,7 @@ const options = {
 
 const sequelize = new Sequelize(options);
 
-const models = {};
+const models = {}; 
 
 // Import all of the models.
 fs
