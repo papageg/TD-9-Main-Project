@@ -1,14 +1,14 @@
 const express = require('express');
-const app = express();
 const router = express.Router();
 
-var course = require("./course");
+//var course = require("./course");
+const records = require('./records');
 
 ////////////////// USER ROUTES ///////////////////////////
 
 router.get('/users', async (req, res)=>{
     //Return the currently authenticated user
-    res.json(course);
+    const user = req.body
 });
 
 router.post('/users', async (req, res)=>{
