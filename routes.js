@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require("./db/models/user").User;
+//const Course = require("./db/models/course").Course;
 var auth = require('basic-auth')
 // var compare = require('tsscmp')
 
@@ -15,7 +16,7 @@ const authenticateUser = (req, res, next) =>{
       // Attempt to retrieve the user from the data store
       // by their username (i.e. the user's "key"
       // from the Authorization header).
-      const user = users.find(u => u.username === credentials.name);
+      const user = User.find(u => u.userId === credentials.name);
   
       // If a user was successfully retrieved from the data store...
       if (user) {
@@ -60,10 +61,10 @@ router.get('/users', authenticateUser, (req, res)=>{
     const user = req.currentUser;
 
     res.json({
-        firstName: user.firstName,
-        lastName: user.lastName,
-        emailAdress: user.emailAdress,
-        password: user.password
+        firstName: User.firstName,
+        lastName: User.lastName,
+        emailAdress: User.emailAdress,
+        password: User.password
     });
 });
 
