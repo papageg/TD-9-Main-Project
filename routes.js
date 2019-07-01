@@ -8,13 +8,13 @@ const User = require('./db/models/User').User;
 
 router.get('/users', (req, res)=>{
   res.json({
-    firstName: User.firstName,
-    lastName: User.lastName,
+    firstName: res.body.firstName,
+    lastName: res.body.lastName,
   });
 });
 
 router.post('/users', function (req, res){
-  User.create({
+  return User.create({
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     emailAdress: req.body.emailAdress,
