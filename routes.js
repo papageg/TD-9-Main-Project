@@ -1,22 +1,36 @@
 const express = require('express');
 const router = express.Router();
-
+const User = require("./db/models/user").User;
 var auth = require('basic-auth')
+var compare = require('tsscmp')
 
 
 ////////////////// USER ROUTES ///////////////////////////
 
 router.get('/users', (req, res)=>{
-    function check (name) {
+        var credentials = auth(req)
+       
+        // Check credentials
+        // The "check" function will typically be against your user store
+        if (!credentials || !check(credentials.name, credentials.pass)) {
+          res.statusCode = 401
+          res.setHeader('WWW-Authenticate', 'Basic realm="example"')
+          res.end('Access denied')
+        } else {
+          res.end('Access granted')
+        }
+      
+       
+      // Basic function to validate credentials for example
+      function check (name, pass) {
         var valid = true
        
         // Simple method to prevent short-circut and use timing-safe compare
-        valid = compare(name, req.body.firstName) && valid
-        // valid = compare(pass, 'secret') && valid
+        valid = compare(name, req.body.emailAdress) && valid
+        valid = compare(pass, req.body.password) && valid
        
         return valid
       }
-      res.json(check);
 });
 
 router.post('/users', function (req, res){
