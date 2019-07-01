@@ -43,6 +43,7 @@ app.get('/', (req, res) => {
 });
 
 app.use("/api", routes);
+app.use("/routes", routes);
 
 // send 404 if no other route matched
 app.use((req, res) => {
