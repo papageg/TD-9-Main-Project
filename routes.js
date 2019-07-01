@@ -1,21 +1,40 @@
 const express = require('express');
 const router = express.Router();
 
-//var course = require("./course");
-// const records = require('./records');
+var auth = require('basic-auth')
+
 
 ////////////////// USER ROUTES ///////////////////////////
 
-router.get('/users', async (req, res)=>{
-    //Return the currently authenticated user
-    res.json("Hi")
-    //1 
-    // const user = req.body
+router.get('/users', (req, res)=>{
+    function check (name) {
+        var valid = true
+       
+        // Simple method to prevent short-circut and use timing-safe compare
+        valid = compare(name, req.body.firstName) && valid
+        // valid = compare(pass, 'secret') && valid
+       
+        return valid
+      }
+      res.json(check);
 });
 
-router.post('/users', async (req, res)=>{
+router.post('/users', function (req, res){
     //Creates a user, sets the Location header 
     //to "/", and returns no content
+    User.create({
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        emailAdress: req.body.emailAdress,
+        password: req.body.password
+      }).then(() => {
+        res.location('/');
+        res.status(201).end();
+    }).catch(error => {
+        error.status = 400;
+        next(error);
+    });
+
 });
 
 //////////////////////////////////////////////////////////
