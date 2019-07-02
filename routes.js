@@ -1,30 +1,18 @@
 const express = require('express');
 const router = express.Router();
-const { User } = require('./db/models/user');
+// const User  = require('./models/user');
 // var auth = require('basic-auth')
 // const User = require('./db/models/User').User;
 
 ////////////////// USER ROUTES ///////////////////////////
 
-router.get('/users', (req, res, next)=>{
-res.json(User);
+router.get('/users', (req, res)=>{
+
 });
 
 
 router.post('/users', function (req, res, next){
-    const user = req.body
-  User.create({
-    firstName: user.firstName,
-    lastName: user.lastName,
-    emailAddress: user.emailAdress,
-    password: user.password
-  }).then(() => {
-    res.status(201).end()
-    
-  }).catch((err) => {
-    err.status = 400;
-    return next(err);
-  })   
+
 });
 
 
