@@ -14,6 +14,7 @@ router.get('/users', (req, res)=>{
     //     emailAddress: User.emailAddress,
     //     password: User.password
     // })
+    //
     console.log(req);
 });
 
