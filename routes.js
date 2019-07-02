@@ -1,17 +1,24 @@
 const express = require('express');
 const router = express.Router();
-// const User  = require('./models/user');
+// const dataB = require('./fsjstd-restapi.db');
+const { User }  = require('./models/user');
 // var auth = require('basic-auth')
 // const User = require('./db/models/User').User;
 
 ////////////////// USER ROUTES ///////////////////////////
 
 router.get('/users', (req, res)=>{
-
+    // res.json({
+    //     firstName: User.firstName,
+    //     lastName: User.lastName,
+    //     emailAddress: User.emailAddress,
+    //     password: User.password
+    // })
+    console.log(req);
 });
 
 
-router.post('/users', function (req, res, next){
+router.post('/users', (req, res)=>{
 
 });
 
