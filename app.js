@@ -4,7 +4,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const Sequelize = require('sequelize');
-var routes = require("./routes");
+
 
 // variable to enable global error logging
 const enableGlobalErrorLogging = process.env.ENABLE_GLOBAL_ERROR_LOGGING === 'true';
@@ -33,7 +33,12 @@ sequelize
 // setup morgan which gives us http request logging
 app.use(morgan('dev'));
 
+// setup request body json parsing
+app.use(express.json());
+
 // TODO setup your api routes here
+app.use("/api", require("./routes/users"));
+app.use("/api", require("./routes/courses"));
 
 // setup a friendly greeting for the root route
 app.get('/', (req, res) => {
@@ -42,7 +47,6 @@ app.get('/', (req, res) => {
   });
 });
 
-app.use("/api", routes);
 
 // send 404 if no other route matched
 app.use((req, res) => {

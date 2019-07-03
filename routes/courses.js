@@ -1,35 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const dataB = require('./seed/data');
 // const { User }  = require('./models/user');
 // var auth = require('basic-auth')
 // const User = require('./db/models/User').User;
-
-////////////////// USER ROUTES ///////////////////////////
-
-router.get('/users', (req, res)=>{
-    // res.json({
-    //     firstName: User.firstName,
-    //     lastName: User.lastName,
-    //     emailAddress: User.emailAddress,
-    //     password: User.password
-    // })
-    //
-    res.json(dataB.users)
-    // res.json({
-    //     firstName: dataB.users.emailAddress,
-    //     lastName: dataB.users.lastName,
-    //     emailAddress: dataB.users.emailAddress,
-    //     password: dataB.users.password
-    // });
-    // set status
-    res.status(200);
-});
-
-
-router.post('/users', (req, res)=>{
-
-});
 
 
 //////////////////////////////////////////////////////////
