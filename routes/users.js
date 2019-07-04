@@ -6,34 +6,24 @@ const { users } = require('../seed/data.json');
 ////////////////// USER ROUTES ///////////////////////////
 
 router.get('/users', (req, res)=>{
-    // res.json({
-    //     firstName: User.firstName,
-    //     lastName: User.lastName,
-    //     emailAddress: User.emailAddress,
-    //     password: User.password
-    // })
-    //
+
     res.json(users)
-    // console.log(req)
-    // res.json({
-    //     firstName: dataB.users.emailAddress,
-    //     lastName: dataB.users.lastName,
-    //     emailAddress: dataB.users.emailAddress,
-    //     password: dataB.users.password
-    // });
-    // set status
+
     res.status(200);
 });
 
 
 router.post('/users', (req, res)=>{
-    const newUser = {
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        emailAddress: req.body.emailAddress,
-        password: req.body.password
-    }
-    User.create(newUser)
+    users.push(req.body);
+    // Set the status to 201 Created and end the response.
+return res.status(201).end();
+    // const newUser = {
+    //     firstName: req.body.firstName,
+    //     lastName: req.body.lastName,
+    //     emailAddress: req.body.emailAddress,
+    //     password: req.body.password
+    // }
+    // createUsers(newUser)
 });
 
 module.exports = router; 
