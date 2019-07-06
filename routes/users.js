@@ -25,18 +25,18 @@ const authenticateUser = (req, res, next) => {
         // (from the Authorization header) to the user's password
         // that was retrieved from the data store.
         const authenticated = bcryptjs
-          .compareSync(credentials.pass, users.password);
+          .compareSync(credentials.pass, user.password);
   
         // If the passwords match...
         if (authenticated) {
-          console.log(`Authentication successful for username: ${users.emailAddress}`);
+          console.log(`Authentication successful for username: ${user.emailAddress}`);
   
           // Then store the retrieved user object on the request object
           // so any middleware functions that follow this middleware function
           // will have access to the user's information.
           req.currentUser = user;
         } else {
-          message = `Authentication failure for username: ${users.emailAddress}`;
+          message = `Authentication failure for username: ${user.emailAddress}`;
         }
       } else {
         message = `User not found for username: ${credentials.name}`;
