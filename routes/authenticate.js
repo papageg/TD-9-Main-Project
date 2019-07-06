@@ -1,3 +1,4 @@
+const express = require('express');
 const bcryptjs = require('bcryptjs');
 const auth = require('basic-auth');
 // const User = require('../models/user').User;
@@ -14,7 +15,7 @@ module.exports = (req, res, next) => { // Passing the authenticateUser() custom 
     // Attempt to retrieve the user from the data store
     // by their username (i.e. the user's "key"
     // from the Authorization header).
-    User.findOne({ // User defined above
+    User.find({ // User defined above
       where: {
         emailAddress: credentials.name
       }
@@ -32,7 +33,7 @@ module.exports = (req, res, next) => { // Passing the authenticateUser() custom 
           next();
         } else {
           // Wrong Password
-          message = `Authentication failure for username: ${user.username}`;
+          message = `Authentication failure for username: ${user.emailAdress}`;
         }
       } else {
         // Wrong username

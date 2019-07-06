@@ -16,6 +16,7 @@ router.get('/users', authenticateUser, (req, res)=>{
         firstName: user.firstName,
         lastName: user.lastName,
         emailAddress: user.emailAddress
+        // password: user.password
     }).status(200);
     // res.json(users)
 
