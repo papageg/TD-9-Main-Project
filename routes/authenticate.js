@@ -1,12 +1,11 @@
-const express = require('express');
-const router = express.Router();
-const auth = require('basic-auth');
 const bcryptjs = require('bcryptjs');
-const { users } = require('../seed/data.json');
+const auth = require('basic-auth');
+// const User = require('../models/user').User;
+const User = require('../seed/data.json').users;
 
-const authenticateUser = (req, res, next) => {
+// Basic Auth in Postman
+module.exports = (req, res, next) => { // Passing the authenticateUser() custom middleware function into the Router's (or Application's) get() method ahead of the inline router handler function tells Express to route GET requests to the path "/api/users" first to our custom middleware function and then to the inline router handler function.
   let message = null;
-
   // Parse the user's credentials from the Authorization header.
   const credentials = auth(req);
 
@@ -15,31 +14,33 @@ const authenticateUser = (req, res, next) => {
     // Attempt to retrieve the user from the data store
     // by their username (i.e. the user's "key"
     // from the Authorization header).
-    const user = users.find(u => u.emailAddress === credentials.name);
-
-    // If a user was successfully retrieved from the data store...
-    if (user) {
-      // Use the bcryptjs npm package to compare the user's password
-      // (from the Authorization header) to the user's password
-      // that was retrieved from the data store.
-      const authenticated = bcryptjs
-        .compareSync(credentials.pass, users.password);
-
-      // If the passwords match...
-      if (authenticated) {
-        console.log(`Authentication successful for username: ${users.emailAddress}`);
-
-        // Then store the retrieved user object on the request object
-        // so any middleware functions that follow this middleware function
-        // will have access to the user's information.
-        req.currentUser = user;
-      } else {
-        message = `Authentication failure for username: ${users.emailAddress}`;
+    User.findOne({ // User defined above
+      where: {
+        emailAddress: credentials.name
       }
-    } else {
-      message = `User not found for username: ${credentials.name}`;
-    }
+    }).then(user => {
+      // If a user was successfully retrieved from the data store...
+      if (user) {
+        // Use the bcryptjs npm package to compare the user's password (from the Authorization header) to the user's password that was retrieved from the data store.
+        const authenticated = bcryptjs
+          .compareSync(credentials.pass, user.password);
+
+        // If the passwords match...
+        if (authenticated) {
+          // Then store the retrieved user object on the request object so any middleware functions that follow this middleware function will have access to the user's information.
+          req.currentUser = user;
+          next();
+        } else {
+          // Wrong Password
+          message = `Authentication failure for username: ${user.username}`;
+        }
+      } else {
+        // Wrong username
+        message = `User not found for username: ${credentials.name}`;
+      }
+    })    
   } else {
+    // No credentials where entered
     message = 'Auth header not found';
   }
 
@@ -49,9 +50,9 @@ const authenticateUser = (req, res, next) => {
 
     // Return a response with a 401 Unauthorized HTTP status code.
     res.status(401).json({ message: 'Access Denied' });
-  } else {
+  } /*else {
     // Or if user authentication succeeded...
     // Call the next() method.
     next();
-  }
-};
+  }*/
+}
