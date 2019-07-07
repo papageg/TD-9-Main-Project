@@ -39,6 +39,7 @@ app.use(express.json());
 // TODO setup your api routes here
 app.use("/api", require("./routes/users"));
 app.use("/api", require("./routes/courses"));
+
 // app.use("/api", require("./routes/authenticate"));
 
 // setup a friendly greeting for the root route

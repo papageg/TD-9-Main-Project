@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { users } = require('../seed/data.json');
-const authenticateUser = require("./authenticate.js");
+const authenticateUser = require("./authenticate");
 // const User = require("../models").User;
 // const authenticate = require("./authenticate");
 // const bcryptjs = require('bcryptjs');
