@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-// const { User }  = require('./models/user');
 // var auth = require('basic-auth')
-// const User = require('./db/models/User').User;
+// const { courses } = require('../db/models/course');
+const { courses } = require('../seed/data');
 
 
 //////////////////////////////////////////////////////////
@@ -11,6 +11,14 @@ const router = express.Router();
 router.get('/courses', async (req, res)=>{
     //Returns a list of courses 
     //(including the user that owns each course)
+        res.json(courses);
+    // res.json({       
+    //         userId: req.userId,
+    //         title: req.title,
+    //         description: req.description,
+    //         estimatedTime: req.estimatedTime,
+    //         materialsNeeded: req.materialsNeeded
+    // })
 });
 
 router.get('/courses/:id', async (req, res)=>{
