@@ -12,18 +12,18 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER
     },
     title: {
-        type: Sequelize.STRING
+        type: DataTypes.STRING
         // allowNull defaults to true
     },
     description: {
-        type: Sequelize.TEXT
+        type: DataTypes.TEXT
     },
     estimatedTime: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: true
     },
     materialsNeeded: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: true
     }
   });

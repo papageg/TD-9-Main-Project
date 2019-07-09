@@ -6,6 +6,9 @@ const authenticateUser = require("./authenticate");
 // const authenticate = require("./authenticate");
 // const bcryptjs = require('bcryptjs');
 
+// const { models } = require('./db');
+// const { User, Course } = models;
+
 ////////////////// USER ROUTES ///////////////////////////
 
 router.get('/users', authenticateUser, (req, res)=>{
