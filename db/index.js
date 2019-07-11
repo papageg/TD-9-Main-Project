@@ -14,7 +14,7 @@ const options = {
   operatorsAliases: false,
   // This option configures Sequelize to always force the synchronization
   // of our models by dropping any existing tables.
-  sync: { force: true },
+  // sync: { force: true },
   define: {
     // This option removes the `createdAt` and `updatedAt` columns from the tables
     // that Sequelize generates from our models. These columns are often useful

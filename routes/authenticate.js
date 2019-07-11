@@ -1,6 +1,6 @@
 const bcryptjs = require('bcryptjs');
 const auth = require('basic-auth');
-const User = require('../db/models/user').User;
+const User = require('../db').models.User;
 
 // Basic Auth in Postman
 module.exports = (req, res, next) => { // Passing the authenticateUser() custom middleware function into the Router's (or Application's) get() method ahead of the inline router handler function tells Express to route GET requests to the path "/api/users" first to our custom middleware function and then to the inline router handler function.
