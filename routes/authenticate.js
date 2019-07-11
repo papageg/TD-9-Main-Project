@@ -1,12 +1,6 @@
-const express = require('express');
-const router = express.Router();
 const bcryptjs = require('bcryptjs');
 const auth = require('basic-auth');
-// const User = require('../models/user').User;
-// const User = require('../seed/data.json').users;
-
-const { sequelize, models } = require('../db');
-const { User, Course } = models;
+const User = require('../db/models/user').User;
 
 // Basic Auth in Postman
 module.exports = (req, res, next) => { // Passing the authenticateUser() custom middleware function into the Router's (or Application's) get() method ahead of the inline router handler function tells Express to route GET requests to the path "/api/users" first to our custom middleware function and then to the inline router handler function.
@@ -37,7 +31,7 @@ module.exports = (req, res, next) => { // Passing the authenticateUser() custom 
           next();
         } else {
           // Wrong Password
-          message = `Authentication failure for username: ${user.emailAdress}`;
+          message = `Authentication failure for username: ${user.username}`;
         }
       } else {
         // Wrong username
@@ -61,5 +55,3 @@ module.exports = (req, res, next) => { // Passing the authenticateUser() custom 
     next();
   }*/
 }
-
-// module.exports = router;
