@@ -37,6 +37,7 @@ module.exports = (req, res, next) => { // Passing the authenticateUser() custom 
         // Wrong username
         message = `User not found for username: ${credentials.name}`;
       }
+      next();
     })    
   } else {
     // No credentials where entered
@@ -49,9 +50,9 @@ module.exports = (req, res, next) => { // Passing the authenticateUser() custom 
 
     // Return a response with a 401 Unauthorized HTTP status code.
     res.status(401).json({ message: 'Access Denied' });
-  } /*else {
+  } else {
     // Or if user authentication succeeded...
     // Call the next() method.
     next();
-  }*/
+  }
 }
